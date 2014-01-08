@@ -15,6 +15,7 @@ HEADERS += csconverter.h \
     callback.h \
     webpage.h \
     webserver.h \
+    rabbit.h \
     consts.h \
     utils.h \
     networkaccessmanager.h \
@@ -32,6 +33,7 @@ SOURCES += phantom.cpp \
     callback.cpp \
     webpage.cpp \
     webserver.cpp \
+    rabbit.cpp \
     main.cpp \
     csconverter.cpp \
     utils.cpp \
@@ -52,12 +54,14 @@ OTHER_FILES += \
     modules/fs.js \
     modules/webpage.js \
     modules/webserver.js \
+    modules/rabbit.js \
     modules/child_process.js \
     modules/cookiejar.js \
     repl.js
 
 include(gif/gif.pri)
 include(mongoose/mongoose.pri)
+include(qamqp/qamqp.pri)
 include(linenoise/linenoise.pri)
 include(qcommandline/qcommandline.pri)
 
@@ -67,7 +71,7 @@ linux*|mac|openbsd* {
     SOURCES += breakpad/src/client/minidump_file_writer.cc \
       breakpad/src/common/convert_UTF.c \
       breakpad/src/common/md5.cc \
-      breakpad/src/common/string_conversion.cc 
+      breakpad/src/common/string_conversion.cc
 
     QTPLUGIN += \
         qcncodecs \

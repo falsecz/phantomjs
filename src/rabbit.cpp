@@ -191,7 +191,7 @@ void RabbitExchange::declare(QString name, QString type, qint16 options) {
 
 void RabbitExchange::publish(QString message, QString routingKey, QString contentType) {
 	QByteArray utf8;
-	utf8.append(message);
+	utf8.append(message.toUtf8());
 	exchange->publish(utf8, routingKey, contentType);
 
 }

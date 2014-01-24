@@ -130,8 +130,8 @@ void RabbitQueue::messageReceived(QAMQP::Queue* q) {
 		// q->ack(message);
 		// return;
 
+		QString s = QString::fromUtf8(message->payload.data(), message->payload.size());
 
-		QString s = message->payload.data();
 
 		RabbitResponse *rr = new RabbitResponse(this, q, message);
 		QVariantMap headers;

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export PATH=$HOME/git/bin:$PATH
-
+echo mrdka
 if type apt-get >/dev/null 2>&1; then
     apt-get update
     apt-get install -y build-essential git-core libssl-dev libfontconfig1-dev gdb binutils-gold
@@ -26,7 +26,7 @@ if type yum >/dev/null 2>&1; then
 fi
 
 if [[ ! -d phantomjs ]]; then
-    git clone git://github.com/ariya/phantomjs.git
+    git clone git://github.com/falsecz/phantomjs.git
 fi
 
 cd phantomjs

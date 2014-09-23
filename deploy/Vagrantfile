@@ -7,27 +7,33 @@ unless ENV['PHANTOMJS_VERSION']
   exit 1
 end
 
+
 Vagrant::Config.run do |config|
-  config.vm.define :i686 do |c|
-    c.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-centos-5.8-i386.box"
-    c.vm.box     = "centos_58_32bit"
-    c.vm.customize ["modifyvm", :id, "--ostype", "RedHat"]
-  end
+  # config.vm.define :i686 do |c|
+  #   c.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-centos-5.8-i386.box"
+  #   c.vm.box     = "centos_58_32bit"
+  #   c.vm.customize ["modifyvm", :id, "--ostype", "RedHat"]
+  # end
+  #
+  # config.vm.define :x86_64 do |c|
+  #   c.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-centos-5.8.box"
+  #   c.vm.box     = "centos_58_64bit"
+  #   c.vm.customize ["modifyvm", :id, "--ostype", "RedHat_64"]
+  # end
+  #
+  # config.vm.define :lucid32 do |c|
+  #   c.vm.box_url = "http://files.vagrantup.com/lucid32.box"
+  #   c.vm.box     = "lucid32"
+  # end
+  #
+  # config.vm.define :lucid64 do |c|
+  #   c.vm.box_url = "http://files.vagrantup.com/lucid64.box"
+  #   c.vm.box     = "lucid64"
+  # end
 
-  config.vm.define :x86_64 do |c|
-    c.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-centos-5.8.box"
-    c.vm.box     = "centos_58_64bit"
-    c.vm.customize ["modifyvm", :id, "--ostype", "RedHat_64"]
-  end
-
-  config.vm.define :lucid32 do |c|
-    c.vm.box_url = "http://files.vagrantup.com/lucid32.box"
-    c.vm.box     = "lucid32"
-  end
-
-  config.vm.define :lucid64 do |c|
-    c.vm.box_url = "http://files.vagrantup.com/lucid64.box"
-    c.vm.box     = "lucid64"
+  config.vm.define :precise64 do |c|
+    # c.vm.box_url = "http://files.vagrantup.com/lucid64.box"
+    c.vm.box     = "precise64_vmware"
   end
 
   config.vm.provision :shell do |s|
@@ -38,5 +44,16 @@ Vagrant::Config.run do |config|
   # You may wish to tweak these, but be aware that you need quite a lot of
   # memory for the linking stage.
   config.vm.customize ["modifyvm", :id, "--memory", 3072]
-  config.vm.customize ["modifyvm", :id, "--cpus",   2]
+  config.vm.customize ["modifyvm", :id, "--cpus",   4]
+
+end
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.provider "vmware_fusion" do |v|
+        v.vmx["memsize"] = "2048"
+        v.vmx["numvcpus"] = "4"
+    end
+
 end

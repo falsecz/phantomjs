@@ -101,8 +101,10 @@ public slots:
 	void declare(QString key, qint16 options);
 	void setQOS(qint32 prefetchSize, quint16 prefetchCount);
 	void consume();
+	void get();
 
 	void messageReceived(QAMQP::Queue* q);
+	void empty();
 
 	void declared();
 	void closed();
@@ -110,6 +112,7 @@ public slots:
 signals:
 	void newDeclared();
 	void newClosed();
+	void queueEmpty();
 	void newMsg(QString, QVariantMap headers, QString deliveryInfo, QObject *res);
 
 private:
